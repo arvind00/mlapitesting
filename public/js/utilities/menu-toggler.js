@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#menu_toggler").click(function(){
+    function toggleMenu(){
         $("#menu-custom").slideToggle("slow");
-    });
+    }
 });

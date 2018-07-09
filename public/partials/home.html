@@ -1,1 +1,17 @@
-<div ng-include="'partials/train.html'"></div>
+<!-- progress bar section -->
+<div class="progress" ng-if="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0"
+        aria-valuemax="100" ng-style="{'width':progress +'%'}">
+        {{progress}}% Complete (success)
+    </div>
+</div>
+<!-- end of progress bar section -->
+
+<div class="row">
+    <div class="col-md-6">
+        <div ng-include="'partials/train.html'"></div>
+    </div>
+    <div class="col-md-6">
+        <div ng-include="'partials/test.html'"></div>
+    </div>
+</div>

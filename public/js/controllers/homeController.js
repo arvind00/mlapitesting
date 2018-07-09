@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('homeController', ['$scope', '$rootScope','fileServiceCustom', function ($scope, $rootScope,fileServiceCustom) {
+    .controller('homeController', ['$scope', '$rootScope','fileServiceCustom', 'apiServiceCustom', function ($scope, $rootScope,fileServiceCustom, apiServiceCustom) {
         $rootScope.currentPath = 'home';
         $rootScope.current_page_icon = 'fas fa-home';
         $scope.progress = '';
@@ -13,6 +13,8 @@ angular.module('app')
                 fileServiceCustom.uploadFile(uploadData)
                 .then(function(response){
                     console.log('success');
+                    //hide the progress bar after sometime
+                    $('.progress').fadeOut();
                 }, function(err){
                     console.log('failed');
                 }, function(progress){
@@ -23,4 +25,20 @@ angular.module('app')
             
         }
         //end of function to upload file
+
+        // function to run python program
+        $scope.analyze = function(){
+            var data = {
+                trainFile: "trainfileapth.csv",
+                testFile: "testfilepath.csv",
+                req_param: "rq1, rq2, rq3",
+                res_param: "rs1"
+            }
+            apiServiceCustom.runPython(data)
+            .then(function(response){
+                console.log(data);
+            },function(err){
+                console.log(err);
+            });
+        }
     }]);
