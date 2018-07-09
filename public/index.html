@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 3rd party css libs -->
+    <link rel="shortcut icon" href="libs/fontawesome-5.1.0/svgs/solid/gem.svg">
+    <link rel="stylesheet" href="libs/fontawesome-5.1.0/css/all.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="libs/bootstrap-3.3.7/css/bootstrap.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/styles.css">
+    <title>API Testing With ML</title>
+</head>
+
+<body>
+    <div ng-include="'partials/header.html'"></div>
+
+    <div class="body-custom">
+        <div ng-view class="container-custom"></div>
+    </div>
+
+    <script src="libs/angular-1.7.2/angular.min.js"></script>
+    <script src="libs/angular-1.7.2/angular-route.min.js"></script>
+    <script src="libs/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script src="js/modules/app.js"></script>
+    <script src="js/services/fileServiceCustom.js"></script>    
+    <script src="js/controllers/homeController.js"></script>
+    <script src="js/controllers/reportsController.js"></script>
+    <script src="js/utilities/filedialog.js"></script>
+    <script src="js/utilities/menu-toggler.js"></script>    
+</body>
+
+</html>

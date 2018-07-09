@@ -1,0 +1,18 @@
+<form class="md-form">
+    <div class="file-field">
+        <input type="file" class="file" id="trainFile" style="display: none;" onchange="updateFilePathField(this, 'train_file_path')"/>
+        <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('trainFile')" value="Choose File"/>
+    </div> 
+    <div class="file-path-wrapper">
+        <input id='train_file_path' class="file-path validate input-custom" type="text" placeholder="Upload train file">
+        <button class="btn-floating btn-blue" ng-click="uploadFile('trainFile')"><i class='fas fa-upload'></i></button>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+            aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width':progress +'%'}">
+              {{progress}}% Complete (success)
+            </div>
+          </div>
+    </div>      
+</form>
+<!-- below script contains the definitions for updateFilePathField() and openFileDialog() -->
+<script src="../js/utilities/filedialog.js"></script>

@@ -1,0 +1,201 @@
+.header-custom {
+  background-color:teal;
+  background-image: none;
+  background-repeat: no-repeat;
+  color: #FFFF;
+  font-size: 36px
+ }
+ .body-custom{
+    margin-top: 53px;
+ }
+ .toggler-section-custom{
+  position: absolute;
+  display: none;
+  padding-top: 0px;
+ }
+.menu-toggler-custom{
+    background-color: transparent;
+    border: none;
+}
+.current-page-i-wrapper{
+  display: inline-block;
+  left: 42px;
+  color: orange;
+}
+
+#menu-custom{
+  display: inline-block;
+  position: absolute;
+  font-size: 14px;
+  top: 4px;
+}
+#menu-custom>ul{
+  display: block;
+  list-style: none;
+  margin-left: -39px;
+}
+#menu-custom>ul>li{
+  display: block;
+  margin: 0;
+  padding: 10px 5px;
+  border: 1px solid teal;
+  color: whitesmoke;
+  border-radius: 4px;
+  min-width: 82px;
+}
+#menu-custom>ul>li>a{
+  color: whitesmoke;
+  width: auto;
+  border: none;
+  display: block;
+  outline: 0;
+}
+
+.active-custom{
+  background: linear-gradient(40deg,#ffd86f,#fc6262)!important;
+ }
+
+.file-field, .file-path-wrapper {
+  display: inline;
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+ input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+
+.input-custom{
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    background-color: transparent;
+    min-width: 300px;
+    position: relative;
+    top:7px;
+}
+.btn-blue {
+  background-color: #30cfc0!important;
+  color: #fff!important;
+}
+.shadow-custom{
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+
+.file-field {
+  position: relative;
+}
+.btn-floating {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  width: 47px;
+  height: 47px;
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  margin: 10px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.float-left {
+  float: left!important;
+}
+
+button{
+  border: none;
+  outline: none;
+}
+.btn-floating i {
+  display: inline-block;
+  width: inherit;
+  text-align: center;
+  /* color: #fff; */
+  font-size: 1.25rem;
+  line-height: 47px;
+}
+
+.file-field, .file-path-wrapper {
+  display: inline;
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+/* color section */
+.blue-gradient {
+  background: -webkit-linear-gradient(50deg,#45cafc,#303f9f);
+  background: -o-linear-gradient(50deg,#45cafc,#303f9f);
+  background: linear-gradient(40deg,#45cafc,#303f9f);
+}
+
+/* Css for smaller device */
+/* If the screen size is 600px or less */
+@media only screen and (max-width: 600px) {
+  /* make the header text smaller */
+  .header-custom{
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+   }
+   /* show the menu toggler section */
+   .toggler-section-custom{
+    display: inline-block;
+  }
+  /* make the menu items width to 100%  and hide it initially and push it down*/
+  #menu-custom{
+    width: 100%;
+    display: none;
+    top: 46px;
+  }
+  /* make upload button a bit smaller */
+  .btn-floating {
+    width: 37px;
+    height: 37px;
+    margin: 5px;
+  }
+  .btn-floating i{
+    line-height: 36px;
+  }
+}
+
+/* for larger device */
+@media only screen and (min-width:600px){
+  .menu_icon { display: none; }
+  /* make menu horizontal */
+  #menu-custom>ul>li{
+    float: left;
+  }
+  /*keep the content to right a little*/
+  .container-custom{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #menu-custom>ul>li {
+    display: block;
+    margin-left: 4px;
+  }
+}
