@@ -3,6 +3,9 @@ angular.module('app')
         $rootScope.currentPath = 'home';
         $rootScope.current_page_icon = 'fas fa-home';
         $scope.progress = '';
+        $scope.currentTrainFileName = 'SampleTrainFile.csv';
+        $scope.currentTestFileName = 'SampleTestFile.csv';
+        $scope.predictorVariable = [];
 
         //function to upload file
         $scope.uploadFile = function (fileInputTargetId) {

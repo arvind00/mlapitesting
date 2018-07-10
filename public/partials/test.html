@@ -5,24 +5,27 @@
 
     <div class="panel-body">
         <!-- file upload section -->
-        <form class="md-form">
-            <div class="file-field">
-                <input type="file" class="file" id="testFile" style="display: none;" onchange="updateFilePathField(this, 'test_file_path')"
-                />
-                <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('testFile')" value="Choose File" />
-            </div>
-            <div class="file-path-wrapper">
-                <input id='test_file_path' class="file-path validate input-custom" type="text" placeholder="Upload test file">
-                <button class="btn-floating btn-blue" ng-click="uploadFile('testFile')">
-                    <i class='fas fa-upload'></i>
-                </button>
-            </div>
-        </form>
+        <div class="file-field">
+            <input type="file" class="file" id="testFile" style="display: none;" onchange="updateFilePathField(this, 'test_file_path')"
+            />
+            <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('testFile')" value="Choose File" />
+        </div>
+        <div class="file-path-wrapper">
+            <input id='test_file_path' class="file-path validate input-custom" type="text" placeholder="Upload test file">
+            <button class="btn-floating btn-blue" ng-click="uploadFile('testFile')">
+                <i class='fas fa-upload'></i>
+            </button>
+        </div>
+
         <!-- below script contains the definitions for updateFilePathField() and openFileDialog() -->
         <script src="../js/utilities/filedialog.js"></script>
         <!-- end of file upload section -->
 
         <!-- analyze section -->
         <input type="button" class='btn btn-blue shadow-custom' ng-click="analyze()" value="Analyze" />
+        <div>
+            <span>File selected : </span><span ng-bind="currentTestFileName"></span>
+        </div>
+        
     </div>
 </div>

@@ -4,7 +4,7 @@
     </div>
     
     <div class = "panel-body">
-        <form class="md-form">
+        <form>
             <div class="file-field">
                 <input type="file" class="file" id="trainFile" style="display: none;" onchange="updateFilePathField(this, 'train_file_path')"/>
                 <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('trainFile')" value="Choose File"/>
@@ -17,6 +17,35 @@
         </form>
         <!-- below script contains the definitions for updateFilePathField() and openFileDialog() -->
         <script src="../js/utilities/filedialog.js"></script>
+        <!-- end of upload section -->
+
+        <div>
+            <span>File selected : </span><span ng-bind="currentTrainFileName"></span>
+        </div>
+        <!-- uploaded file list section -->
+        <!-- <table>
+            <caption>List of uploaded - train files </caption>
+            <thead>
+              <tr>
+                <th scope="col">FileName</th>
+                <th scope="col">Select</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+               <tr>
+                <th scope="row"></th>
+                <td>1976</td>
+                <td>9</td>
+                <td>Ever fallen in love (with someone you shouldn't've)</td>
+              </tr>
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="2">Total albums</th>
+                <td colspan="2">77</td>
+              </tr>
+            </tfoot>
+          </table> -->
     </div>
  </div>
 

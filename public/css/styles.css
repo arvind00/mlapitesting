@@ -58,7 +58,6 @@
 .file-field, .file-path-wrapper {
   display: inline;
   overflow: hidden;
-  padding-left: 10px;
 }
 
  input[type=file] {
@@ -137,12 +136,6 @@ button{
   /* color: #fff; */
   font-size: 1.25rem;
   line-height: 47px;
-}
-
-.file-field, .file-path-wrapper {
-  display: inline;
-  overflow: hidden;
-  padding-left: 10px;
 }
 
 /* color section */
