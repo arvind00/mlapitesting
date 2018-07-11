@@ -6,27 +6,44 @@ var multer = require('multer');
 
 server.use(express.static(path.join(__dirname, 'public')))
 
+//configure to use body parser
+var bodyParser = require('body-parser');
+// create application/json parser
+var jsonParser = bodyParser.json();
+
 //handling file uploads
-var storage = multer.diskStorage({
+var trainStorage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, './data')
+		console.log(file);
+		callback(null, './data/train')
 	},
 	filename: function(req, file, callback) {
 		console.log(file.originalname + ' uploaded successfully...');
         callback(null, file.originalname )
 	}
 })
-var upload = multer({storage: storage});
-server.post('/api/upload-file', upload.single('file'), function(req, res, next){
+var uploadTrainFile = multer({storage: trainStorage});
+server.post('/api/upload-file/train', uploadTrainFile.single('file'), function(req, res, next){
     res.end('File is uploaded');
 });
 
+var testStorage = multer.diskStorage({
+	destination: function(req, file, callback) {
+		console.log(file);
+		callback(null, './data/test')
+	},
+	filename: function(req, file, callback) {
+		console.log(file.originalname + ' uploaded successfully...');
+        callback(null, file.originalname )
+	}
+})
+var uploadTestFile = multer({storage: testStorage});
+server.post('/api/upload-file/test', uploadTestFile.single('file'), function(req, res, next){
+    res.end('File is uploaded');
+});
 //end of file uploads
 
 //handling call to python program
-// var bodyParser = require('body-parser');
-// // create application/json parser
-// var jsonParser = bodyParser.json();
 // server.post('/api/analyze',jsonParser, function(req, res, next){
 // 	res.end(JSON.stringify(req.body, null, 2));
 // })

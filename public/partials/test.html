@@ -23,9 +23,18 @@
 
         <!-- analyze section -->
         <input type="button" class='btn btn-blue shadow-custom' ng-click="analyze()" value="Analyze" />
-        <div>
-            <span>File selected : </span><span ng-bind="currentTestFileName"></span>
+        <!-- file selection section -->
+        <div class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="selectTestFile">Select Test File</label>
+                <select class='form-control' ng-model='selectedTestFileName' id='selectTestFile'>
+                    <option value=''>Select File</option>
+                    <option ng-repeat="fileName in testFileNames" ng-value="fileName" ng-bind="fileName"></option>
+                </select>
+                <span ng-if='selectedTestFileName' for='selectTestFile'>File Selected:&nbsp;&nbsp;<span style="color:green" ng-bind="selectedTestFileName"></span></span>
+            </div>
         </div>
+        <!-- end of file selection -->
         
     </div>
 </div>

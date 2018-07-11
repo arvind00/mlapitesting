@@ -5,6 +5,9 @@ angular.module('app')
         $scope.progress = '';
         $scope.currentTrainFileName = 'SampleTrainFile.csv';
         $scope.currentTestFileName = 'SampleTestFile.csv';
+        $scope.trainFileNames = ['train1.csv','train2.csv','longlongfilename.csv'];
+        $scope.testFileNames = ['test1.csv','test2.csv','longlongfilename.csv'];
+
         $scope.predictorVariable = [];
 
         //function to upload file
@@ -12,8 +15,15 @@ angular.module('app')
             $scope.progress = '';
             var fileObj = document.getElementById(fileInputTargetId);
             if(fileObj.files.length >=1){
+                var fieldname = 'file';
+                var uploadUrl="";
+                if(fileInputTargetId == 'trainFile'){
+                    uploadUrl = '/api/upload-file/train';
+                }else if(fileInputTargetId == 'testFile'){
+                    uploadUrl = '/api/upload-file/test';
+                }
                 var uploadData = {'file': fileObj.files[0]};
-                fileServiceCustom.uploadFile(uploadData)
+                fileServiceCustom.uploadFile(uploadData, uploadUrl)
                 .then(function(response){
                     console.log('success');
                     //hide the progress bar after sometime
