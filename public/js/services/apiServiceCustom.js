@@ -10,5 +10,14 @@ var app = angular.module('app')
                 url: '/api/analyze',
             }).then(defer.resolve.bind(defer), defer.reject.bind(defer));
             return defer.promise;
+        };
+        this.makeGenericGetAPICall=function(requestUrl){
+            console.log('in makeGenericAPICall Method');
+            var defer = $q.defer();
+            $http({
+                method: 'GET',
+                url: requestUrl
+            }).then(defer.resolve.bind(defer), defer.reject.bind(defer));
+            return defer.promise;
         }
     }]);

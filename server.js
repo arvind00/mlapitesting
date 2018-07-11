@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var server = express();
+const fs = require('fs');
 
 var multer = require('multer');
 
@@ -42,6 +43,24 @@ server.post('/api/upload-file/test', uploadTestFile.single('file'), function(req
     res.end('File is uploaded');
 });
 //end of file uploads
+
+//api to get test file names
+server.get('/api/testfilelist', function(req, res, next){
+	const testFolder = './data/test/';	
+	fs.readdir(testFolder, (err, files) => {
+		console.log(files);
+		res.send(files);
+	})
+});
+
+//api to get train file names
+server.get('/api/trainfilelist', function(req, res, next){
+	const trainFolder = './data/train/';	
+	fs.readdir(trainFolder, (err, files) => {
+		console.log(files);
+		res.send(files);
+	})
+});
 
 //handling call to python program
 // server.post('/api/analyze',jsonParser, function(req, res, next){

@@ -1,0 +1,36 @@
+#Gettting started with : CRUD in Mongodb using Nodejs Succintly
+
+Pre-requisite:
+nodejs version 6 or higher
+mongodb version 3 or higher
+
+Reference:
+http://mongodb.github.io/node-mongodb-native/2.2/quick-start/quick-start/
+
+Terminal used:
+Windows command prompt (cmd)
+
+Conventions:
+$ means terminal or command prompt
+##dd means serial number of steps
+
+##01 create project folder
+$ mkdir node_mongo_app
+$ cd node_mongo_app
+
+##02 create package.json file
+$ npm init
+Answer the questions that follows according to your project
+
+##03 install mongodb driver
+$ install mongodb --save
+
+##04 create a app data folder inside your project folder
+$ mkdir "./app_data/data/db"
+
+##05 start mongodb server
+$ mongod --dbpath "./app_data/data/db"
+
+##06 test connection
+craete a file test_connection.js
+

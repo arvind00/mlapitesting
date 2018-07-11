@@ -3,11 +3,8 @@ angular.module('app')
         $rootScope.currentPath = 'home';
         $rootScope.current_page_icon = 'fas fa-home';
         $scope.progress = '';
-        $scope.currentTrainFileName = 'SampleTrainFile.csv';
-        $scope.currentTestFileName = 'SampleTestFile.csv';
-        $scope.trainFileNames = ['train1.csv','train2.csv','longlongfilename.csv'];
-        $scope.testFileNames = ['test1.csv','test2.csv','longlongfilename.csv'];
-
+        getFileList('/api/trainfilelist');
+        getFileList('/api/testfilelist');
         $scope.predictorVariable = [];
 
         //function to upload file
@@ -17,15 +14,20 @@ angular.module('app')
             if(fileObj.files.length >=1){
                 var fieldname = 'file';
                 var uploadUrl="";
+                var getFileListUrl = '';
                 if(fileInputTargetId == 'trainFile'){
                     uploadUrl = '/api/upload-file/train';
+                    getFileListUrl = '/api/trainfilelist';
                 }else if(fileInputTargetId == 'testFile'){
                     uploadUrl = '/api/upload-file/test';
+                    getFileListUrl = '/api/testfilelist';
                 }
                 var uploadData = {'file': fileObj.files[0]};
                 fileServiceCustom.uploadFile(uploadData, uploadUrl)
                 .then(function(response){
                     console.log('success');
+                    //populate files names as options in select file dropdown
+                    getFileList(getFileListUrl);
                     //hide the progress bar after sometime
                     $('.progress').fadeOut();
                 }, function(err){
@@ -38,7 +40,19 @@ angular.module('app')
             
         }
         //end of function to upload file
-
+        //function to get filelist
+        function getFileList(getFileListUrl){
+            apiServiceCustom.makeGenericGetAPICall(getFileListUrl)
+            .then(function(response){
+                if(getFileListUrl === '/api/trainfilelist'){
+                    $scope.trainFileNames = response.data;
+                }else{
+                    $scope.testFileNames = response.data;
+                }
+            }, function(err){
+                console.log(err);
+            });
+        }
         // function to run python program
         $scope.analyze = function(){
             var data = {
