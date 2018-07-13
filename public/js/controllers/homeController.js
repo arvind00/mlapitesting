@@ -55,6 +55,13 @@ angular.module('app')
         }
         // function to run python program
         $scope.analyze = function(){
+            //continue only if trainFile and testFile are selected
+            if($scope.selectedTrainFileName & $scope.selectedTestFileName){
+                console.log('both files selected');
+            }else{
+                console.log('Files not selected');
+                return;
+            }
             var data = {
                 trainFile: "trainfileapth.csv",
                 testFile: "testfilepath.csv",
@@ -63,7 +70,7 @@ angular.module('app')
             }
             apiServiceCustom.runPython(data)
             .then(function(response){
-                console.log(data);
+                console.log(response.data);
             },function(err){
                 console.log(err);
             });

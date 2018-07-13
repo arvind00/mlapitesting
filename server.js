@@ -67,10 +67,18 @@ server.get('/api/trainfilelist', function(req, res, next){
 // 	res.end(JSON.stringify(req.body, null, 2));
 // })
 
-server.post('/api/analyze', function(req, res, next){
+server.post('/api/analyze', jsonParser,function(req, res, next){
 	console.log('yet to run python prog');
-	console.log(req);
-	res.end('success');
+	//console.log(req.body);
+	// var arg1 = "creditlimit_train.csv";
+	// var arg2 = "creditlimit_test.csv";
+	// var arg3 = ["Salary","LoanAmt"];
+	// var arg4 = ["Level"];
+	var arg1 = req.body.trainFile;
+	var arg2 = req.body.testFile;
+	var arg3 = [req.body.req_param];
+	var arg4 = [req.body.res_param];
+	console.log(arg1, arg2, arg3, arg4);
 	// const { spawn } = require('child_process');
 	// const pyProg = spawn('python', ['./sample.py', arg1, arg2, arg3, arg3]);
 	// // in the python program access the args as sys.argv[1]
@@ -82,8 +90,14 @@ server.post('/api/analyze', function(req, res, next){
     //     console.log(data.toString());
     //     res.write(data);
     //     res.end(data.toString());
-    // });
-
+	// });
+	var sampleResult=`    SNo   Salary  LoanAmt        Actual     predicted
+	28  129   700000    63756     Low Level  Medium Level
+	35  136   406000   406000     Low Level  Medium Level
+	83  184  1400000   348600  Medium Level    High Level
+	`;
+	res.end(sampleResult);
 });
+// end of analyze
 
 server.listen(3000, ()=> console.log('app is running at http://localhost:3000/index.html'));

@@ -24,7 +24,7 @@
             <label class="sr-only" for="selectTrainFile">Select Train File</label>
             <select class='form-control' ng-model='selectedTrainFileName' id='selectTrainFile'>
                 <option value=''>Select File</option>
-                <option ng-repeat="fileName in trainFileNames" ng-value="fileName" ng-bind="fileName"></option>
+                <option ng-repeat="fileName in trainFileNames" value="{{fileName}}" ng-bind="fileName"></option>
             </select>
             <span ng-if='selectedTrainFileName' for='selectTrainFile'>File Selected:&nbsp;&nbsp;<span style="color:green" ng-bind="selectedTrainFileName"></span></span>
           </div>
