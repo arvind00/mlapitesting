@@ -73,7 +73,7 @@ server.post('/api/getheader', jsonParser, function(req, res, next){
 		console.log(err);
 	});
 	lr.on('line', function (line) {
-		res.send([line]);
+		res.send(line);
 		lr.close();
 	});
 	lr.on('end', function () {
@@ -96,8 +96,8 @@ server.post('/api/analyze', jsonParser,function(req, res, next){
 	// var arg4 = ["Level"];
 	var arg1 = req.body.trainFile;
 	var arg2 = req.body.testFile;
-	var arg3 = [req.body.req_param];
-	var arg4 = [req.body.res_param];
+	var arg3 = req.body.req_param;
+	var arg4 = req.body.res_param;
 	console.log(arg1, arg2, arg3, arg4);
 	// const { spawn } = require('child_process');
 	// const pyProg = spawn('python', ['./sample.py', arg1, arg2, arg3, arg3]);

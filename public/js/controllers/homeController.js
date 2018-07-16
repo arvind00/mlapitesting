@@ -7,9 +7,32 @@ angular.module('app')
         getFileList('/api/testfilelist');
         $scope.currentTrainFile = '';
         $scope.trainFileHeaderArr = [];
-        $scope.predictorVariable = [];
+        $scope.predictorVariables = [];
+        $scope.responseVariables=[];
         $scope.finalOutputHeader = [];
         $scope.finalOutputBody = [];
+        $scope.reqModel = $scope.fieldName + '_req';
+	    $scope.resModel = $scope.fieldName + '_res';
+
+        $scope.tableHeaders = [
+            {'name':'Field Name', 'type': 'span'},
+            {'name': 'Field Type', 'type': 'text'},
+            {'name': 'Length', 'type': 'text'},
+            {'name': 'Default Value', 'type':'text' },
+            {'name': 'Request', type: 'checkbox'},
+            {'name': 'Response', type: 'checkbox'}
+        ];
+
+        $scope.updateReqResArrays = function(){
+            $scope.predictorVariables=[];
+            $scope.responseVariables = [];
+            $.each($("input[name='req_checkbox']:checked"), function(){            
+                $scope.predictorVariables.push($(this).attr('for'));
+            });
+            $.each($("input[name='res_checkbox']:checked"), function(){            
+                $scope.responseVariables.push($(this).attr('for'));
+            });
+        }
 
         //function to upload file
         $scope.uploadFile = function (fileInputTargetId) {
@@ -101,8 +124,8 @@ angular.module('app')
             var data = {
                 trainFile: $scope.currentTrainFile,
                 testFile: testFileName,
-                req_param: "rq1, rq2, rq3",
-                res_param: "rs1"
+                req_param: $scope.predictorVariables,
+                res_param: $scope.responseVariables
             }
             apiServiceCustom.runPython(data)
             .then(function(response){
@@ -115,12 +138,13 @@ angular.module('app')
 
         //function to read csv header
         $scope.loadHeaders = function(sFileName){
+            var sFileName = document.getElementById('train_file_path').value;
             var getHeaderUrl = 'api/getheader';
             var dataToPass = {filename: sFileName};
             apiServiceCustom.getHeader(getHeaderUrl, dataToPass)
             .then(function(response){
                 // console.log(response.data);
-                $scope.trainFileHeaderArr = response.data;
+                $scope.trainFileHeaderArr = response.data.split(',');
             }, function(err){
                 console.log(err);
             });

@@ -105,6 +105,9 @@
 .mt-10-custom{
   margin-top: 10px;
 }
+.mt-20-custom{
+  margin-top: 20px;
+}
 
 .pd-16-12-custom{
   padding: 16px 12px;
@@ -168,7 +171,7 @@ th {
 th, td{
   padding-left: 5px;
 }
-/* for zebra stripping*/
+/* for zebra stripping
 tbody tr:nth-child(odd) {
   background-color: DarkTurquoise;
 }
@@ -176,6 +179,7 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even) {
   background-color: LightSeaGreen;
 }
+*/
 /* end of  table styling section */
 
 /* color section */
@@ -239,4 +243,114 @@ tbody tr:nth-child(even) {
     display: block;
     margin-left: 4px;
   }
+}
+
+/* old css content */
+
+
+.validate-section{
+	margin-top: 40px; 
+}
+.btn-custom-width{
+	width: 76px !important;
+}
+
+.margin-l-30{
+	margin-left: 30px;
+}
+
+.margin-l-13{
+	margin-left: 13px;
+}
+
+.Trebuchet-font{
+	font-family: "Trebuchet MS";
+	font-weight: bold;
+    font-size: medium;
+}
+.field-inline{
+	display: inline !important;
+}
+
+.custom-hdr {
+    font-size: x-large;
+    margin-top: 0px;
+    background-color: #ffff99;
+    padding: 5px 2px;
+    font-family: "Britannic Bold";
+}
+
+.populate-header-section{
+	margin-top: 2px;
+	margin-bottom: 10px;	
+}
+
+.button.btn.btn-primary {
+    margin-left: 13px;
+}
+.train-file-section{
+	margin-top: 10px;
+}
+
+.table {
+  font-size: 10px;
+}
+
+.table tr,.table td {
+   height: 12px;
+   text-align: left;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{
+  padding-left:5px; 
+  padding-top:2px;
+}
+
+.rec-found{
+	font-weight: normal;
+}
+
+.label-for-checkox {
+    width: 57px;
+    /* background-color: gray; */
+}
+
+/* new css content */
+.tableContainer{
+	width:101%; height: 126px; overflow-y: scroll; font-size: 8px;
+}
+
+.validate-section{
+	margin-top: 40px; 
+}
+.btn-custom-width{
+	width: 98px !important;
+}
+
+#report tr{
+	font-size: 12px;
+	line-height: 2px;
+	height: 10px;
+}
+
+.btn-custom{
+	font-size: 10px;
+	padding: 3px 6px;
+}
+
+.cus-menu{
+	display: block;
+    min-height: 28px;
+    background-color: lightblue;
+    margin-bottom: 4px;
+}
+.navbar-nav>li>a {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    line-height: 23px
+}
+
+.search-container{
+	margin-bottom: 10px;
 }
