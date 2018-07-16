@@ -106,6 +106,10 @@
   margin-top: 10px;
 }
 
+.pd-16-12-custom{
+  padding: 16px 12px;
+}
+
 .file-field {
   position: relative;
 }
@@ -145,6 +149,34 @@ button{
   font-size: 1.25rem;
   line-height: 47px;
 }
+/* table styling section */
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.5px solid #38678f;
+  text-align: left;
+}
+table>tbody>tr{
+  border: 1px solid #30cfc0;
+}
+th {
+  background: steelblue;
+  height: 32px;
+  color: white;
+}
+th, td{
+  padding-left: 5px;
+}
+/* for zebra stripping*/
+tbody tr:nth-child(odd) {
+  background-color: DarkTurquoise;
+}
+
+tbody tr:nth-child(even) {
+  background-color: LightSeaGreen;
+}
+/* end of  table styling section */
 
 /* color section */
 .blue-gradient {
@@ -156,6 +188,9 @@ button{
   background: -webkit-linear-gradient(50deg,#2096ff,#05ffa3)!important;
   background: -o-linear-gradient(50deg,#2096ff,#05ffa3)!important;
   background: linear-gradient(40deg,#2096ff,#05ffa3)!important;
+}
+.grey-gradient {
+  background: linear-gradient(40deg,rgb(37, 37, 37),#696868)!important;
 }
 
 /* Css for smaller device */

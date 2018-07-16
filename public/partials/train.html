@@ -22,17 +22,30 @@
         <div class="form-inline">
           <div class="form-group">
             <label class="sr-only" for="selectTrainFile">Select Train File</label>
-            <select class='form-control' ng-model='selectedTrainFileName' id='selectTrainFile'>
+            <select class='form-control' ng-model='selectedTrainFileName' id='selectTrainFile' ng-change="updateCurrentTrainFile(this)">
                 <option value=''>Select File</option>
                 <option ng-repeat="fileName in trainFileNames" value="{{fileName}}" ng-bind="fileName"></option>
             </select>
-            <span ng-if='selectedTrainFileName' for='selectTrainFile'>File Selected:&nbsp;&nbsp;<span style="color:green" ng-bind="selectedTrainFileName"></span></span>
+            <label for="hasHeaders">
+                <input ng-disabled="!selectedTrainFileName" type="checkbox" class='checkbox' ng-model='hasHeaders' id='hasHeaders' >
+                Has Headers
+            </label>
+            <input ng-if='hasHeaders' type="button" class="btn btn-blue shadow-custom" ng-click="loadHeaders(selectedTrainFileName)" value="Load Headers"/>
           </div>
         </div>
         <!-- end of file selection -->
         <!-- parameter configuration section -->
-        <div class="aqua-gradient shadow-lg-custom mt-10-custom" style="color: whitesmoke">
-            <span>Configure Parameters For Machine Learning Alogorithm</span>
+        <div class="form-inline grey-gradient shadow-lg-custom mt-10-custom pd-16-12-custom" style="color: whitesmoke">
+            <div>Configure Parameters For Machine Learning Alogorithm</div>
+            <div class="form-group">
+                <label for="predictors">Predictors</label>
+                <input class="form-control" type="text-area" ng-model="predictorsCsv"/>
+            </div>
+            <div class="form-group">
+                <label for="predictors">Response</label>
+                <input class="form-control" type="text-area" ng-model="responseCsv"/>
+            </div>
+
         </div>
     </div><!--  end of panel body -->
  </div>

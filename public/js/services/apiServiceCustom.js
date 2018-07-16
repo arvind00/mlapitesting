@@ -11,13 +11,25 @@ var app = angular.module('app')
             }).then(defer.resolve.bind(defer), defer.reject.bind(defer));
             return defer.promise;
         };
-        this.makeGenericGetAPICall=function(requestUrl){
+        this.makeGenericGetAPICall=function(requestUrl, dataPassed){
             console.log('in makeGenericAPICall Method');
             var defer = $q.defer();
             $http({
                 method: 'GET',
-                url: requestUrl
+                url: requestUrl,
+                data: dataPassed || ''
             }).then(defer.resolve.bind(defer), defer.reject.bind(defer));
             return defer.promise;
-        }
+        };
+        this.getHeader=function(requestUrl, dataPassed){
+            console.log('in getHeader API Method');
+            var defer = $q.defer();
+            $http({
+                method: 'POST',
+                url: requestUrl,
+                data: dataPassed || ''
+            }).then(defer.resolve.bind(defer), defer.reject.bind(defer));
+            return defer.promise;
+        };
+
     }]);

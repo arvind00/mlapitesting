@@ -20,10 +20,8 @@
         <!-- below script contains the definitions for updateFilePathField() and openFileDialog() -->
         <script src="../js/utilities/filedialog.js"></script>
         <!-- end of file upload section -->
-
-        <!-- analyze section -->
-        <input type="button" class='btn btn-blue shadow-custom' ng-click="analyze()" value="Analyze" />
-        <!-- file selection section -->
+        
+        <!-- file selection and analyze section -->
         <div class="form-inline">
             <div class="form-group">
                 <label class="sr-only" for="selectTestFile">Select Test File</label>
@@ -31,10 +29,26 @@
                     <option value=''>Select File</option>
                     <option ng-repeat="fileName in testFileNames" ng-value="fileName" ng-bind="fileName"></option>
                 </select>
-                <span ng-if='selectedTestFileName' for='selectTestFile'>File Selected:&nbsp;&nbsp;<span style="color:green" ng-bind="selectedTestFileName"></span></span>
+                <select class='form-control' ng-model='selectedAlgorithm' id='selectAlgorithm'>
+                    <option value=''>Select Algorithm</option>
+                    <option ng-repeat="algorithmName in ['algo1', 'algo2']" ng-value="algorithmName" ng-bind="algorithmName"></option>
+                </select>
+                <input type="button" class='btn btn-blue shadow-custom' ng-click="analyze(selectedTrainFileName,selectedTestFileName)" value="Analyze" />
             </div>
         </div>
         <!-- end of file selection -->
-        
+        <!-- result section -->
+        <table class="mt-10-custom shadow-lg-custom">
+            <thead>
+              <tr>
+                <th scope="col" ng-repeat = "item in finalOutputHeader" ng-bind=item></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat = "row in finalOutputBody">
+                <td ng-repeat="col in row track by $index" ng-bind="col"></td>
+              </tr>
+            </tbody>
+          </table>
     </div>
 </div>

@@ -3,6 +3,7 @@ var path = require('path');
 var server = express();
 const fs = require('fs');
 
+
 var multer = require('multer');
 
 server.use(express.static(path.join(__dirname, 'public')))
@@ -48,7 +49,7 @@ server.post('/api/upload-file/test', uploadTestFile.single('file'), function(req
 server.get('/api/testfilelist', function(req, res, next){
 	const testFolder = './data/test/';	
 	fs.readdir(testFolder, (err, files) => {
-		console.log(files);
+		//console.log(files);
 		res.send(files);
 	})
 });
@@ -57,9 +58,28 @@ server.get('/api/testfilelist', function(req, res, next){
 server.get('/api/trainfilelist', function(req, res, next){
 	const trainFolder = './data/train/';	
 	fs.readdir(trainFolder, (err, files) => {
-		console.log(files);
+		//console.log(files);
 		res.send(files);
 	})
+});
+
+//api to get file header
+
+server.post('/api/getheader', jsonParser, function(req, res, next){
+	let sFileName = req.body.filename;
+	var LineByLineReader = require('line-by-line');
+	var lr = new LineByLineReader('./data/train/' + sFileName);
+	lr.on('error', function (err) {
+		console.log(err);
+	});
+	lr.on('line', function (line) {
+		res.send([line]);
+		lr.close();
+	});
+	lr.on('end', function () {
+		// All lines are read, file is closed now.
+	});
+	
 });
 
 //handling call to python program
@@ -92,9 +112,9 @@ server.post('/api/analyze', jsonParser,function(req, res, next){
     //     res.end(data.toString());
 	// });
 	var sampleResult=`    SNo   Salary  LoanAmt        Actual     predicted
-	28  129   700000    63756     Low Level  Medium Level
-	35  136   406000   406000     Low Level  Medium Level
-	83  184  1400000   348600  Medium Level    High Level
+	129   700000    63756     Low Level  Medium Level
+	136   406000   406000     Low Level  Medium Level
+	184  1400000   348600  Medium Level    High Level
 	`;
 	res.end(sampleResult);
 });
