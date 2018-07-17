@@ -46,31 +46,32 @@
         </div>
         <!-- end of file selection -->
 	<!-- end of train file section -->
-        
-    <table class='table table-bordered mt-20-custom'>
-        <thead><tr class = "Trebuchet-font">
-            <th data-ng-repeat='tableHeader in tableHeaders' class='col-xs-2' data-ng-bind='tableHeader.name'></th>
-        </tr></thead>
-        <tbody></tbody>
-    </table>
-        
-<!-- End of table header section -->
-
-    <div class='tableContainer'>
-        <table id='configTable' class='table table-bordered'>
-            <tr data-ng-repeat='fieldName in trainFileHeaderArr track by $index'>
-                <td class='col-xs-2'><div ng-bind='fieldName' contenteditable='true'></div></td>
-                <td class='col-xs-2'><input type='text' /></td>
-                <td class='col-xs-2'><input type='text' /></td>
-                <td class='col-xs-2'><input type='text' ></td>
-                <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' for='{{fieldName}}' data-ng-model="reqModel" data-ng-disabled="resModel == true" name="req_checkbox" ng-click="updateReqResArrays()"/></label></td>
-                <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' for='{{fieldName}}' data-ng-model="resModel" data-ng-disabled="reqModel == true" name="res_checkbox" ng-click="updateReqResArrays()"/></label></td>
-            </tr>
+    
+    <div class="shadow-lg-custom">
+        <table class='table table-bordered mt-20-custom'>
+            <thead><tr class = "Trebuchet-font">
+                <th data-ng-repeat='tableHeader in tableHeaders' class='col-xs-2' data-ng-bind='tableHeader.name'></th>
+            </tr></thead>
+            <tbody></tbody>
         </table>
-    </div>
+            
+    <!-- End of table header section -->
 
-<!-- End of table body section -->
-<!-- End of table section -->
+        <div class='tableContainer'>
+            <table id='configTable' class='table table-bordered'>
+                <tr data-ng-repeat='fieldName in trainFileHeaderArr track by $index'>
+                    <td class='col-xs-2'><div ng-bind='fieldName' contenteditable='true'></div></td>
+                    <td class='col-xs-2'><input type='text' /></td>
+                    <td class='col-xs-2'><input type='text' /></td>
+                    <td class='col-xs-2'><input type='text' ></td>
+                    <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' for='{{fieldName}}' data-ng-model="reqModel" data-ng-disabled="resModel == true" name="req_checkbox" ng-click="updateReqResArrays()"/></label></td>
+                    <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' for='{{fieldName}}' data-ng-model="resModel" data-ng-disabled="reqModel == true" name="res_checkbox" ng-click="updateReqResArrays()"/></label></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- End of table body section -->
+    <!-- End of table section -->
     
         <div class="file-field">
                 <input type="file" class="file" id="testFile" style="display: none;" onchange="updateFilePathField(this, 'test_file_path')"
