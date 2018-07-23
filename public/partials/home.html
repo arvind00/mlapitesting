@@ -7,14 +7,6 @@
 </div>
 <!-- end of progress bar section -->
 
-<!-- <div class="row">
-    <div class="col-md-6">
-        <div ng-include="'partials/train.html'"></div>
-    </div>
-    <div class="col-md-6">
-        <div ng-include="'partials/test.html'"></div>
-    </div>
-</div> -->
 <div class="container">
     <!-- upload train file sectiom -->
     <form>
@@ -23,17 +15,16 @@
             <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('trainFile')" value="Choose File"/>
         </div> 
         <div class="file-path-wrapper">
-            <input ng-model='selectedTrainFileName' id='train_file_path' class="file-path validate input-custom" type="text" placeholder="Upload train file">
+            <input id='train_file_path' class="file-path validate input-custom" type="text" placeholder="Upload train file">
             <button class="btn-floating btn-blue" ng-click="uploadFile('trainFile')"><i class='fas fa-upload'></i></button>
-            
         </div>      
     </form>
-
-    <!-- file selection section -->
+    <!-- end of upload train file sectiom -->
+    <!-- train file selection section -->
     <div class="form-inline">
         <div class="form-group">
             <label class="sr-only" for="selectTrainFile">Select Train File</label>
-            <select class='form-control' ng-model='selectedTrainFileName' id='selectTrainFile' ng-change="updateCurrentTrainFile(this)">
+            <select class='form-control' ng-model='selectedTrainFileName' id='selectTrainFile'>
                 <option value=''>Select File</option>
                 <option ng-repeat="fileName in trainFileNames" value="{{fileName}}" ng-bind="fileName"></option>
             </select>
@@ -41,61 +32,45 @@
                 <input ng-disabled="!selectedTrainFileName" type="checkbox" class='checkbox' ng-model='hasHeaders' id='hasHeaders' >
                 Has Headers
             </label>
-            <input ng-if='hasHeaders' type="button" class="btn btn-blue shadow-custom" ng-click="loadHeaders(selectedTrainFileName)" value="Load Headers"/>
+            <button ng-if='hasHeaders' type="button" class="btn btn-blue shadow-custom" ng-click="loadHeaders(selectedTrainFileName)">Load Headers
+                    <span ng-if="headersLoading" class="analyze-spinner" style="display:inline-block;margin-left: 5px;"></span>
+            </button>
         </div>
-        </div>
-        <!-- end of file selection -->
-	<!-- end of train file section -->
-    
-    <div class="shadow-lg-custom">
-        <table class='table table-bordered mt-20-custom'>
+    </div>
+    <!-- end of train file selection -->
+    <div id='param_section' class="shadow-lg-custom">
+        <table class='mt-20-custom'>
             <thead><tr class = "Trebuchet-font">
                 <th data-ng-repeat='tableHeader in tableHeaders' class='col-xs-2' data-ng-bind='tableHeader.name'></th>
             </tr></thead>
             <tbody></tbody>
         </table>
-            
-    <!-- End of table header section -->
-
+        <!-- End of paramaterization table header section -->
         <div class='tableContainer'>
-            <table id='configTable' class='table table-bordered'>
-                <tr data-ng-repeat='fieldName in trainFileHeaderArr track by $index'>
+            <table id='configTable'>
+                <tr ng-repeat='fieldName in trainFileHeaderArr track by $index'>
                     <td class='col-xs-2'><div ng-bind='fieldName' contenteditable='true'></div></td>
                     <td class='col-xs-2'><input type='text' /></td>
                     <td class='col-xs-2'><input type='text' /></td>
                     <td class='col-xs-2'><input type='text' ></td>
-                    <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' for='{{fieldName}}' data-ng-model="reqModel" data-ng-disabled="resModel == true" name="req_checkbox" ng-click="updateReqResArrays()"/></label></td>
-                    <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' for='{{fieldName}}' data-ng-model="resModel" data-ng-disabled="reqModel == true" name="res_checkbox" ng-click="updateReqResArrays()"/></label></td>
+                    <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' ng-model="reqModel" ng-disabled="resModel == true" name="req_checkbox"/></label></td>
+                    <td class='col-xs-2'><label class='label-for-checkox'><input type='checkbox' ng-model="resModel" ng-disabled="reqModel == true" name="res_checkbox"/></label></td>
                 </tr>
             </table>
         </div>
+    </div>    
+    <!-- End of paramaterization table body section -->
+    <div class="file-field">
+        <input type="file" class="file" id="testFile" style="display: none;" onchange="updateFilePathField(this, 'test_file_path')"/>
+        <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('testFile')" value="Choose File" />
     </div>
-    <!-- End of table body section -->
-    <!-- End of table section -->
-    
-        <div class="file-field">
-                <input type="file" class="file" id="testFile" style="display: none;" onchange="updateFilePathField(this, 'test_file_path')"
-                />
-                <input type="button" class="btn btn-blue shadow-custom" onclick="openFileDialog('testFile')" value="Choose File" />
-            </div>
-            <div class="file-path-wrapper">
-                <input id='test_file_path' class="file-path validate input-custom" type="text" placeholder="Upload test file">
-                <button class="btn-floating btn-blue" ng-click="uploadFile('testFile')">
-                    <i class='fas fa-upload'></i>
-                </button>
-            </div>
-        <!-- <div class="panel-body">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="myFileField" class="Trebuchet-font">Test Data: </label>
-                <input  type="file" data-demo-file-model="myFile" class="form-control" id ="testFilePath"/>
-                <button data-ng-click="uploadFile()" class = "btn btn-primary margin-l-13">Upload</button>
-                <button type='submit'  class='btn btn-warning btn-custom-width margin-l-13' value = 'Upload' data-ng-click="validateFile()">Validate</button>
-            </div>		
-        </form>
-        </div> -->
-    <!-- end of validate section -->
-    <!-- file selection and analyze section -->
+    <div class="file-path-wrapper">
+        <input id='test_file_path' class="file-path validate input-custom" type="text" placeholder="Upload test file">
+        <button class="btn-floating btn-blue" ng-click="uploadFile('testFile')">
+            <i class='fas fa-upload'></i>
+        </button>
+    </div>
+    <!-- test file selection  -->
     <div class="form-inline">
         <div class="form-group">
             <label class="sr-only" for="selectTestFile">Select Test File</label>
@@ -105,25 +80,24 @@
             </select>
             <select class='form-control' ng-model='selectedAlgorithm' id='selectAlgorithm'>
                 <option value=''>Select Algorithm</option>
-                <option ng-repeat="algorithmName in ['algo1', 'algo2']" ng-value="algorithmName" ng-bind="algorithmName"></option>
+                <option ng-repeat="algorithmName in algoNames" ng-value="algorithmName" ng-bind="algorithmName"></option>
             </select>
-            <input type="button" class='btn btn-blue shadow-custom' ng-click="analyze(selectedTrainFileName,selectedTestFileName)" value="Analyze" />
+            <button class='btn btn-blue shadow-custom' ng-click="analyze(selectedTrainFileName,selectedTestFileName)">Analyze <span ng-if="analyzing" class="analyze-spinner" style="display:inline-block;margin-left: 5px;"></span></button> 
         </div>
     </div>
-        <!-- end of file selection -->
+    <!-- end of test file selection -->
     <!-- result section -->
     <table class="mt-20-custom shadow-lg-custom">
         <thead>
             <tr>
-                <th scope="col" ng-repeat = "item in finalOutputHeader" ng-bind=item></th>
+            <th scope="col" ng-repeat = "item in finalOutputHeader" ng-bind=item></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat = "row in finalOutputBody">
-                <td ng-repeat="col in row track by $index" ng-bind="col"></td>
+            <td ng-repeat="col in row track by $index" ng-bind="col"></td>
             </tr>
         </tbody>
     </table>
     <!-- end of result table -->
-        
 </div>

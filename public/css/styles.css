@@ -161,7 +161,7 @@ table {
   text-align: left;
 }
 table>tbody>tr{
-  border: 1px solid #30cfc0;
+  border: 1px solid #ccc;
 }
 th {
   background: steelblue;
@@ -280,11 +280,17 @@ tbody tr:nth-child(even) {
     font-family: "Britannic Bold";
 }
 
+input#testFilePath {
+    width: 800px;
+}
 .populate-header-section{
 	margin-top: 2px;
 	margin-bottom: 10px;	
 }
 
+input#trainFilePath {
+    width: 800px;
+}
 .button.btn.btn-primary {
     margin-left: 13px;
 }
@@ -297,17 +303,13 @@ tbody tr:nth-child(even) {
 }
 
 .table tr,.table td {
-   height: 8px;
+   height: 12px;
    text-align: left;
 }
 
-.table>tbody>tr>td, .table>thead>tr>th
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
 {
-  margin:0!important; 
-  padding:1px !important;
-}
-.table>tbody>tr>td>label{
-  margin:0!important;
+  padding:0; 
 }
 
 .rec-found{
@@ -321,7 +323,7 @@ tbody tr:nth-child(even) {
 
 /* new css content */
 .tableContainer{
-	width:101%; height: 126px; overflow-y: scroll; font-size: 8px;
+	width:102%; height: 126px; overflow-y: scroll; font-size: 8px;
 }
 
 .validate-section{
@@ -356,4 +358,25 @@ tbody tr:nth-child(even) {
 
 .search-container{
 	margin-bottom: 10px;
+}
+/* analyze spinner */
+.analyze-spinner {
+  border: 0px solid #30cfc0;
+  border-radius: 50%;
+  border-bottom: 1.5px solid #fff;
+  
+  width: 14px;
+  height: 14px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

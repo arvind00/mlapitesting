@@ -5,7 +5,7 @@ angular.module('app')
         $scope.progress = '';
         getFileList('/api/trainfilelist');
         getFileList('/api/testfilelist');
-        $scope.currentTrainFile = '';
+        getAlgoList('/api/algolist');
         $scope.trainFileHeaderArr = [];
         $scope.predictorVariables = [];
         $scope.responseVariables=[];
@@ -81,11 +81,21 @@ angular.module('app')
             });
         }
 
-        // functiojn to update current train file name - triggered from change event in train file select
-        $scope.updateCurrentTrainFile = function(obj){
-            // console.log(obj);
-            $scope.currentTrainFile = obj.selectedTrainFileName;
+        //function to get filelist
+        function getAlgoList(getAlgoListUrl){
+            apiServiceCustom.makeGenericGetAPICall(getAlgoListUrl)
+            .then(function(response){
+                $scope.algoNames = response.data;
+            }, function(err){
+                console.log(err);
+            });
         }
+
+        // functiojn to update current train file name - triggered from change event in train file select
+        // $scope.updateCurrentTrainFile = function(obj){
+        //     // console.log(obj);
+        //     $scope.currentTrainFile = obj.selectedTrainFileName;
+        // }
 
         $scope.processSampleOutput = function(textToProcess){
             //var textToProcess = $scope.sampleOutput;
@@ -115,38 +125,40 @@ angular.module('app')
             $scope.finalOutputHeader = [];
             $scope.finalOutputBody = [];
             //continue only if trainFile and testFile are selected
-            // if($scope.selectedTrainFileName & $scope.selectedTestFileName){
-            //     console.log('both files selected');
-            // }else{
-            //     console.log('Files not selected');
-            //     return;
-            // }
+            if(trainFileName=='' || trainFileName== undefined || testFileName=='' || testFileName==undefined){
+                toastr.warning('Please select a train and test file to continue.');
+                return;
+            }
             var data = {
                 trainFile: $scope.currentTrainFile,
                 testFile: testFileName,
                 req_param: $scope.predictorVariables,
                 res_param: $scope.responseVariables
             }
+            $scope.analyzing = true;
             apiServiceCustom.runPython(data)
             .then(function(response){
                 //console.log(response.data);
                 $scope.processSampleOutput(response.data);
+                $scope.analyzing = false;
             },function(err){
                 console.log(err);
+                $scope.analyzing = false;
             });
         }// end of analyze
 
         //function to read csv header
         $scope.loadHeaders = function(sFileName){
-            var sFileName = document.getElementById('train_file_path').value;
             var getHeaderUrl = 'api/getheader';
             var dataToPass = {filename: sFileName};
+            $scope.headersLoading = true;
             apiServiceCustom.getHeader(getHeaderUrl, dataToPass)
             .then(function(response){
-                // console.log(response.data);
+                $scope.headersLoading = false;
                 $scope.trainFileHeaderArr = response.data.split(',');
             }, function(err){
                 console.log(err);
+                $scope.headersLoading = false;
             });
         }
     }]);

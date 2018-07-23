@@ -1,4 +1,3 @@
-//server.sj
 var express = require('express');
 var path = require('path');
 var server = express();
@@ -64,15 +63,6 @@ server.get('/api/trainfilelist', function(req, res, next){
 	})
 });
 
-//api to get algorithm names
-server.get('/api/algolist', function(req, res, next){
-	const algorithmFolder = './algo/';	
-	fs.readdir(algorithmFolder, (err, files) => {
-		//console.log(files);
-		res.send(files);
-	})
-});
-
 //api to get file header
 
 server.post('/api/getheader', jsonParser, function(req, res, next){
@@ -110,7 +100,7 @@ server.post('/api/analyze', jsonParser,function(req, res, next){
 	var arg4 = req.body.res_param;
 	console.log(arg1, arg2, arg3, arg4);
 	// const { spawn } = require('child_process');
-	// const pyProg = spawn('D:/Anaconda/python', ['./knn_ang.py', arg1, arg2, arg3, arg4]);
+	// const pyProg = spawn('python', ['./sample.py', arg1, arg2, arg3, arg3]);
 	// // in the python program access the args as sys.argv[1]
 	// // To send data back to node just do the following in the python script:
 	// // print(dataToSendBack)
@@ -118,6 +108,7 @@ server.post('/api/analyze', jsonParser,function(req, res, next){
 
     // pyProg.stdout.on('data', function(data) {
     //     console.log(data.toString());
+    //     res.write(data);
     //     res.end(data.toString());
 	// });
 	var sampleResult=`    SNo   Salary  LoanAmt        Actual     predicted
